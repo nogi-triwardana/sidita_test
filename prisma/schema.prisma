@@ -8,27 +8,30 @@ datasource db {
 }
 
 model User {
-  id         Int          @id @default(autoincrement())
+  id         String          @id @default(uuid())
   name       String
-  email      String
+  email      String @unique
+  password  String
   department String
+  accessToken String?
+  role  String
   createdAt  DateTime     @default(now())
   attendance Attendance[]
   worklog    Worklog[]
 }
-
 model Project {
-  id        Int       @id @default(autoincrement())
+  id        String       @id @default(uuid())
   name      String
   location  String
+  totalHours  Int
   createdAt DateTime  @default(now())
   worklog   Worklog[]
 }
 
 model Worklog {
-  id          Int      @id @default(autoincrement())
-  userId      Int
-  projectId   Int
+  id          String      @id @default(uuid())
+  userId      String
+  projectId   String
   date        DateTime
   hoursWorked Decimal  @db.Decimal(5, 2)
   createdAt   DateTime @default(now())
@@ -39,15 +42,16 @@ model Worklog {
 }
 
 model Attendance {
-  id        Int              @id @default(autoincrement())
-  userId    Int
-  date      DateTime
+  id        String              @id @default(uuid())
+  userId    String
+  checkin_date      DateTime?
+  checkout_date     DateTime?
   status    AttendanceStatus
   reason    String?
   createdAt DateTime         @default(now())
   user      User             @relation(fields: [userId], references: [id])
 
-  @@unique([userId, date])
+  @@unique([userId, checkin_date, checkout_date])
 }
 
 enum AttendanceStatus {
