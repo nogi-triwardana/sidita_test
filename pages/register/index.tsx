@@ -1,4 +1,4 @@
-import { Button, Input, Label, Select } from "@/components/atoms"
+import { Button, Input, Label, AtomSelect } from "@/components/atoms"
 import { FormProvider, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -99,8 +99,7 @@ const Register = () => {
           </div>
           <div className="w-full">
             <Label htmlFor="role">Role</Label>
-            <Select 
-              id="role" 
+            <AtomSelect 
               control={control}
               controllerName="role"
               options={[{ value: 'admin', label: 'Admin'}, { value: 'user', label: 'User' }]} 

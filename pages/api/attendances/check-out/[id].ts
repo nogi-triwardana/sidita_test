@@ -22,7 +22,7 @@ const checkOutHandler = async (req: NextApiRequest, res: NextApiResponse) => {
       }
     });
 
-    let x = projects.forEach(async (project) => {
+    const x = projects.forEach(async (project) => {
       const payloadWorklog = {
         userId: user_id,
         projectId: project.project_id,

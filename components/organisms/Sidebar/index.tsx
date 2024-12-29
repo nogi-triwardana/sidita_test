@@ -2,7 +2,6 @@ import { Button } from "@/components/atoms";
 import { MENUS } from "@/constants/menu";
 import classNames from "classnames";
 import { useRouter } from "next/router";
-import { useRouter as useNavigation, redirect, permanentRedirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from 'next/link'
 import { useSession } from "next-auth/react";
@@ -15,7 +14,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     if(data?.user?.role) {
-      let filteredMenuByRole = MENUS
+      const filteredMenuByRole = MENUS
         .filter(menu => menu.roles.includes(data?.user?.role));
       setMenus(filteredMenuByRole);
     }
@@ -25,8 +24,8 @@ const Sidebar = () => {
     <div className="w-[250px] bg-white p-8 shadow-xl">
       <ul className="">
         {menus
-          .map(menu => (
-            <Link href={menu.route}>
+          .map((menu, key) => (
+            <Link key={'link-sidebar-' + key} href={menu.route}>
               <li
                 className={classNames(
                   "py-4 px-2 font-bold rounded-lg text-xl text-[#585858] hover:bg-gray-100 hover:cursor-pointer transition duration-100 ease-in",

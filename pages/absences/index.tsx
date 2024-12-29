@@ -19,7 +19,7 @@ const Absences = () => {
 
   useEffect(() => {
     setTime(new Date());
-    var timer = setInterval(() => setTime(new Date()), 1000);
+    const timer = setInterval(() => setTime(new Date()), 1000);
 
     return () => clearInterval(timer);
   }, []);

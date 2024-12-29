@@ -24,7 +24,7 @@ const Table: React.FC<TTableProps> = ({
 
   useEffect(() => {
     if(columns.length > 0) {
-      let filteredByisShow = columns.filter(column => column?.isShow === true);
+      const filteredByisShow = columns.filter(column => column?.isShow === true);
       setCols(filteredByisShow);
     }
   }, [columns]);
@@ -48,8 +48,8 @@ const Table: React.FC<TTableProps> = ({
       <table className="border-collapse w-full border border-slate-500 table-fixed">
         <thead>
           <tr>
-            {cols.map(column => (
-              <th className="border border-slate-600 text-white bg-[#2a60d4]">
+            {cols.map((column, key) => (
+              <th key={'cols-table-' + key} className="border border-slate-600 text-white bg-[#2a60d4]">
                 {column.label}
               </th>
             ))}
@@ -68,13 +68,13 @@ const Table: React.FC<TTableProps> = ({
               </tr>
             ) : (
               dataSource?.length > 0 ? (
-                dataSource?.map(data => {
+                dataSource?.map((data, key) => {
                   return (
-                    <tr>
+                    <tr key={'row-table-' + key}>
                       {cols
-                        .map(column => {
+                        .map((column) => {
                           return (
-                            <td className="border border-slate-600 text-gray-600 font-medium p-1">
+                            <td key={'column-table-' + key} className="border border-slate-600 text-gray-600 font-medium p-1">
                               {getValueCell(data, column)}
                             </td>
                           );

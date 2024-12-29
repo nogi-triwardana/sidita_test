@@ -58,7 +58,7 @@ const FormCheckoutModal: React.FC<TFormModalCreateProjectProps> = ({
           </div>
           <div className="flex flex-col gap-2 w-full">
             {fieldsProject.map((el, key) => (
-              <div className="flex justify-between gap-2 w-full">
+              <div key={'field-project-' + key} className="flex justify-between gap-2 w-full">
                 <AtomSelect
                   control={control}
                   controllerName={`projects.${key}.project_id`}

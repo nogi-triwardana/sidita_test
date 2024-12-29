@@ -67,6 +67,8 @@ const ExampleCustomInput = forwardRef<any, any>(
   }
 );
 
+ExampleCustomInput.displayName = 'ExampleCustomInput';
+
 const AtomDatePicker: React.FC<any> = ({
   controllerName,
   startDate = new Date(),

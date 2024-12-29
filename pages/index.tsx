@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Link from "next/link";
 
 
 const defaultValues = {
@@ -69,12 +70,12 @@ export default function Login() {
             />
           </div>
           <div className="w-full">
-            <a 
+            <Link 
               href="/register"
               className="underline text-blue-500"
             >
               Register
-            </a>
+            </Link>
           </div>
           <Button
             theme="primary"
